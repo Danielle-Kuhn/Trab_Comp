@@ -1,0 +1,43 @@
+def construir_tabela_analise_preditiva(G, first, follow):
+    # Inicialize a tabela de análise preditiva M
+    tabela_analise_preditiva = {}
+
+    # Preencha a tabela com produções da gramática
+    for nao_terminal in G:
+        for producao in G[nao_terminal]:
+            # Para cada terminal em FIRST(nao_terminal)
+            for terminal in first[nao_terminal]:
+                # Adicione a produção à tabela
+                tabela_analise_preditiva[(nao_terminal, terminal)] = producao
+
+            # Se ε (vazio) estiver em FIRST(nao_terminal), adicione para cada terminal em FOLLOW(nao_terminal)
+            if 'ε' in first[nao_terminal]:
+                for terminal in follow[nao_terminal]:
+                    tabela_analise_preditiva[(nao_terminal, terminal)] = producao
+
+    return tabela_analise_preditiva
+
+# Exemplo de uso
+G = {
+    'S': ['aAB', 'bBA'],
+    'A': ['c', 'ε'],
+    'B': ['d', 'ε']
+}
+
+first = {
+    'S': {'a', 'b'},
+    'A': {'c', 'ε'},
+    'B': {'d', 'ε'}
+}
+
+follow = {
+    'S': {'$', 'b'},
+    'A': {'$', 'b'},
+    'B': {'$', 'b'}
+}
+
+tabela_analise_preditiva = construir_tabela_analise_preditiva(G, first, follow)
+
+# Exibindo a tabela
+for chave, valor in tabela_analise_preditiva.items():
+    print(f'Tabela[{chave}] = {valor}')
