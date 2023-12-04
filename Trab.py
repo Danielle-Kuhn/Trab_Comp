@@ -1,8 +1,8 @@
 class AnalisePreditiva:
 
-    firstSet = {}
-    followSet = {}
-    tabelaAnalise = {}
+    firstSet = {}  # Conjunto First
+    followSet = {}  # Conjunto Follow
+    tabelaAnalise = {}  # Tabela de Análise Preditiva
 
     @staticmethod
     def main():
