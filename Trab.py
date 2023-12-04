@@ -1,11 +1,11 @@
 class AnalisePreditiva:
 
-    firstSet = {}  # Conjunto First
-    followSet = {}  # Conjunto Follow
+    primeiroConjunto = {}  # Conjunto First
+    seguindoConjunto = {}  # Conjunto Follow
     tabelaAnalise = {}  # Tabela de Análise Preditiva
 
     @staticmethod
-    def main():
+    def principal():
         # Definindo a gramática
         AnalisePreditiva.adicionarConjuntoFirst("S", {"(", "id"})
         AnalisePreditiva.adicionarConjuntoFirst("E", {"(", "id"})
@@ -44,11 +44,11 @@ class AnalisePreditiva:
 
     @staticmethod
     def adicionarConjuntoFirst(simbolo, conjunto):
-        AnalisePreditiva.firstSet[simbolo] = conjunto
+        AnalisePreditiva.primeiroConjunto[simbolo] = conjunto
 
     @staticmethod
     def adicionarConjuntoFollow(simbolo, conjunto):
-        AnalisePreditiva.followSet[simbolo] = conjunto
+        AnalisePreditiva.seguindoConjunto[simbolo] = conjunto
 
     @staticmethod
     def adicionarEntradaTabela(naoTerminal, terminal, producao):
@@ -72,6 +72,5 @@ class AnalisePreditiva:
                     print("-\t", end="")
             print()
 
-
-# Executando o método main
-AnalisePreditiva.main()
+# Executando o método principal
+AnalisePreditiva.principal()
